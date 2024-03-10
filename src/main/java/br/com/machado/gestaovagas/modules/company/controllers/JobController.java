@@ -1,7 +1,7 @@
-package br.com.machado.gestaovagas.modules.candidate.controllers;
+package br.com.machado.gestaovagas.modules.company.controllers;
 
-import br.com.machado.gestaovagas.modules.candidate.CandidateEntity;
-import br.com.machado.gestaovagas.modules.candidate.usecases.CreateCandidateUseCase;
+import br.com.machado.gestaovagas.modules.company.entities.JobEntity;
+import br.com.machado.gestaovagas.modules.company.usecases.CreateJobUseCase;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,19 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/candidates")
-public class CandidateController {
+@RequestMapping("/jobs")
+public class JobController {
 
     @Autowired
-    private CreateCandidateUseCase createCandidateUseCase;
+    private CreateJobUseCase createJobUseCase;
 
     @PostMapping("/")
-    public ResponseEntity<Object> create(@Valid @RequestBody CandidateEntity candidateEntity) {
+    public ResponseEntity<Object> create(@Valid @RequestBody JobEntity jobEntity) {
         try {
-            var result = createCandidateUseCase.execute(candidateEntity);
+            var result = createJobUseCase.execute(jobEntity);
             return ResponseEntity.ok(result);
         } catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }

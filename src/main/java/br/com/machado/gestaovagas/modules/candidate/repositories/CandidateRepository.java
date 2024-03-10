@@ -1,5 +1,6 @@
-package br.com.machado.gestaovagas.modules.candidate;
+package br.com.machado.gestaovagas.modules.candidate.repositories;
 
+import br.com.machado.gestaovagas.modules.candidate.CandidateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
