@@ -1,6 +1,6 @@
 package br.com.machado.gestaovagas.security;
 
-import br.com.machado.gestaovagas.providers.JWTProvider;
+import br.com.machado.gestaovagas.providers.JWTCandidateProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,23 +18,24 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @Component
-public class SecurityFilter extends OncePerRequestFilter {
+public class SecurityCandidateFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JWTProvider jwtProvider;
+    private JWTCandidateProvider jwtCandidateProvider;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
 
-        if (request.getRequestURI().startsWith("/company") && nonNull(header)) {
-            var token = this.jwtProvider.validateToken(header);
+        if (request.getRequestURI().startsWith("/candidate") && (nonNull(header))) {
+            var token = jwtCandidateProvider.validateToken(header);
+
             if (isNull(token)) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
             }
 
-            request.setAttribute("company_id", token.getSubject());
+            request.setAttribute("candidate_id", token.getSubject());
             var roles = token.getClaim("roles").asList(Object.class);
 
             var grants = roles.stream()
@@ -47,6 +48,8 @@ public class SecurityFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
 
+
         filterChain.doFilter(request, response);
     }
+
 }

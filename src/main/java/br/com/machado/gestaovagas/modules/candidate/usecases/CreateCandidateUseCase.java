@@ -1,6 +1,6 @@
 package br.com.machado.gestaovagas.modules.candidate.usecases;
 
-import br.com.machado.gestaovagas.modules.candidate.CandidateEntity;
+import br.com.machado.gestaovagas.modules.candidate.entities.CandidateEntity;
 import br.com.machado.gestaovagas.modules.candidate.repositories.CandidateRepository;
 import br.com.machado.gestaovagas.modules.exceptions.UserAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;

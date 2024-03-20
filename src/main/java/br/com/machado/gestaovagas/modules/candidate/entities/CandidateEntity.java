@@ -1,4 +1,4 @@
-package br.com.machado.gestaovagas.modules.candidate;
+package br.com.machado.gestaovagas.modules.candidate.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
