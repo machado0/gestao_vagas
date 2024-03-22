@@ -1,5 +1,6 @@
 package br.com.machado.gestaovagas.modules.candidate.controllers;
 
+import br.com.machado.gestaovagas.modules.candidate.dto.ProfileCandidateResponseDTO;
 import br.com.machado.gestaovagas.modules.candidate.entities.CandidateEntity;
 import br.com.machado.gestaovagas.modules.candidate.usecases.CreateCandidateUseCase;
 import br.com.machado.gestaovagas.modules.candidate.usecases.ListAllJobsByFilterUseCase;
@@ -25,6 +26,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/candidate")
+@Tag(name = "Candidato", description = "Informações do candidato")
 public class CandidateController {
 
     @Autowired
@@ -35,31 +37,45 @@ public class CandidateController {
     private ListAllJobsByFilterUseCase listAllJobsByFilterUseCase;
 
     @PostMapping("/")
+    @Operation(summary = "Cadastro de candidato", description = "Essa função é responsável por cadastrar um candidato")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = CandidateEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "User already exists")
+    })
     public ResponseEntity<Object> create(@Valid @RequestBody CandidateEntity candidateEntity) {
         try {
             var result = createCandidateUseCase.execute(candidateEntity);
             return ResponseEntity.ok(result);
-        } catch(Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping("/")
     @PreAuthorize("hasRole('CANDIDATE')")
+    @Operation(summary = "Perfil do candidato", description = "Essa função é responsável por buscar as informações do perfil do candidato")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = ProfileCandidateResponseDTO.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "User not found")
+    })
+    @SecurityRequirement(name = "jwt_auth")
     public ResponseEntity<Object> get(HttpServletRequest request) {
         var idCandidate = request.getAttribute("candidate_id");
 
         try {
             var result = profileCandidateUseCase.execute(UUID.fromString(idCandidate.toString()));
             return ResponseEntity.ok(result);
-        } catch(Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping("/job")
     @PreAuthorize("hasRole('CANDIDATE')")
-    @Tag(name = "Candidato", description = "Informações do candidato")
     @Operation(summary = "Listagem de vagas disponíveis para o candidato", description = "Essa função é responsável por listar todas as vagas disponíveis baseadas no filtro")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {
