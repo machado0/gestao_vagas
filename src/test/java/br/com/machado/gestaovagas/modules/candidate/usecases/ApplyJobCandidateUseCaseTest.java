@@ -6,8 +6,8 @@ import br.com.machado.gestaovagas.modules.candidate.repositories.ApplyJobReposit
 import br.com.machado.gestaovagas.modules.candidate.repositories.CandidateRepository;
 import br.com.machado.gestaovagas.modules.company.entities.JobEntity;
 import br.com.machado.gestaovagas.modules.company.repositories.JobRepository;
-import br.com.machado.gestaovagas.modules.exceptions.JobNotFoundException;
-import br.com.machado.gestaovagas.modules.exceptions.UserNotFoundException;
+import br.com.machado.gestaovagas.exceptions.JobNotFoundException;
+import br.com.machado.gestaovagas.exceptions.UserNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

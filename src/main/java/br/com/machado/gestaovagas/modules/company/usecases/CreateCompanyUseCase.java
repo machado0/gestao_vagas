@@ -2,7 +2,7 @@ package br.com.machado.gestaovagas.modules.company.usecases;
 
 import br.com.machado.gestaovagas.modules.company.entities.CompanyEntity;
 import br.com.machado.gestaovagas.modules.company.repositories.CompanyRepository;
-import br.com.machado.gestaovagas.modules.exceptions.UserAlreadyExistsException;
+import br.com.machado.gestaovagas.exceptions.UserAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

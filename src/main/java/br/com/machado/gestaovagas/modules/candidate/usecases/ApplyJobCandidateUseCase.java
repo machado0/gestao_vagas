@@ -4,8 +4,8 @@ import br.com.machado.gestaovagas.modules.candidate.entities.ApplyJobEntity;
 import br.com.machado.gestaovagas.modules.candidate.repositories.ApplyJobRepository;
 import br.com.machado.gestaovagas.modules.candidate.repositories.CandidateRepository;
 import br.com.machado.gestaovagas.modules.company.repositories.JobRepository;
-import br.com.machado.gestaovagas.modules.exceptions.JobNotFoundException;
-import br.com.machado.gestaovagas.modules.exceptions.UserNotFoundException;
+import br.com.machado.gestaovagas.exceptions.JobNotFoundException;
+import br.com.machado.gestaovagas.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

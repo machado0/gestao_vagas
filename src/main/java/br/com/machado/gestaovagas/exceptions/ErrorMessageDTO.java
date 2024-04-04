@@ -1,4 +1,4 @@
-package br.com.machado.gestaovagas.modules.exceptions;
+package br.com.machado.gestaovagas.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

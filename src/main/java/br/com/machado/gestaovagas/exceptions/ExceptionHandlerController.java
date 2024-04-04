@@ -1,4 +1,4 @@
-package br.com.machado.gestaovagas.modules.exceptions;
+package br.com.machado.gestaovagas.exceptions;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

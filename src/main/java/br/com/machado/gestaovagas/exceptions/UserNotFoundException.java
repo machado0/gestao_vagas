@@ -1,4 +1,4 @@
-package br.com.machado.gestaovagas.modules.exceptions;
+package br.com.machado.gestaovagas.exceptions;
 
 public class UserNotFoundException extends RuntimeException {
 
