@@ -18,7 +18,7 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @Component
-public class SecurityFilter extends OncePerRequestFilter {
+public class SecurityCompanyFilter extends OncePerRequestFilter {
 
     @Autowired
     private JWTProvider jwtProvider;
